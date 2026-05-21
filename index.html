@@ -63,14 +63,6 @@
       pointer-events: none;
     }
 
-    .celebration-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
     .page-shell {
       position: relative;
       z-index: 1;
@@ -155,8 +147,7 @@
 
     .icon-button,
     .primary-button,
-    .secondary-button,
-    .text-button {
+    .secondary-button {
       border: 0;
       border-radius: 999px;
       cursor: pointer;
@@ -184,70 +175,10 @@
       background: rgba(34, 197, 94, 0.1);
     }
 
-    .text-button {
-      display: none;
-      margin-bottom: 14px;
-      color: var(--muted-text);
-      background: transparent;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .text-button.visible {
-      display: inline-flex;
-    }
-
     .icon-button:hover,
     .primary-button:hover,
-    .secondary-button:hover,
-    .text-button:hover {
+    .secondary-button:hover {
       transform: translateY(-2px);
-    }
-
-    .instructions-panel,
-    .score-explanation,
-    .reaction-guide,
-    .result-celebration {
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      border-radius: var(--radius-md);
-      background: rgba(31, 41, 55, 0.52);
-    }
-
-    .instructions-panel {
-      margin-bottom: 18px;
-      padding: 16px;
-    }
-
-    .instructions-panel.hidden {
-      display: none;
-    }
-
-    .instructions-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .instructions-header strong,
-    .score-explanation strong,
-    .reaction-guide h3 {
-      display: block;
-      color: var(--text);
-      font-size: 0.96rem;
-      letter-spacing: -0.02em;
-    }
-
-    .instructions-panel p,
-    .score-explanation p,
-    .reaction-guide p,
-    .result-celebration span {
-      color: var(--muted-text);
-      line-height: 1.55;
-      font-size: 0.92rem;
     }
 
     .game-area {
@@ -364,26 +295,6 @@
       line-height: 1.5;
     }
 
-    .result-celebration {
-      display: none;
-      margin-top: 16px;
-      padding: 16px 18px;
-      border-color: rgba(34, 197, 94, 0.32);
-      background: rgba(34, 197, 94, 0.08);
-      animation: celebrationPop 420ms ease both;
-    }
-
-    .result-celebration.show {
-      display: block;
-    }
-
-    .result-celebration strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.08rem;
-      letter-spacing: -0.03em;
-    }
-
     .controls {
       display: flex;
       gap: 14px;
@@ -402,6 +313,12 @@
       color: #052e16;
       background: var(--accent);
       box-shadow: 0 16px 32px rgba(34, 197, 94, 0.22);
+    }
+
+    .primary-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      transform: none;
     }
 
     .secondary-button {
@@ -454,10 +371,12 @@
       font-size: 1.05rem;
     }
 
-    .score-explanation,
     .reaction-guide {
       margin-top: 12px;
-      padding: 16px;
+      padding: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(31, 41, 55, 0.52);
     }
 
     .reaction-guide-header {
@@ -466,6 +385,18 @@
       align-items: flex-start;
       gap: 16px;
       margin-bottom: 14px;
+    }
+
+    .reaction-guide h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .reaction-guide p {
+      color: var(--muted-text);
+      line-height: 1.5;
+      font-size: 0.92rem;
     }
 
     #current-category {
@@ -519,57 +450,6 @@
       box-shadow: 0 0 24px rgba(34, 197, 94, 0.16);
     }
 
-    .celebration-badge {
-      position: fixed;
-      left: 50%;
-      top: 16%;
-      min-width: min(360px, calc(100vw - 32px));
-      padding: 18px 22px;
-      border: 1px solid rgba(148, 163, 184, 0.24);
-      border-radius: 22px;
-      background: rgba(15, 23, 42, 0.9);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
-      backdrop-filter: blur(18px);
-      text-align: center;
-      opacity: 0;
-      transform: translate(-50%, -12px) scale(0.94);
-      animation: badgePop 1.6s ease forwards;
-    }
-
-    .celebration-badge strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.16rem;
-    }
-
-    .celebration-badge span {
-      color: var(--muted-text);
-      font-size: 0.92rem;
-    }
-
-    .celebration-particle {
-      position: fixed;
-      left: 50%;
-      top: 42%;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 18px currentColor;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      animation: particleBurst 900ms ease-out forwards;
-    }
-
-    .celebration-particle.star {
-      width: auto;
-      height: auto;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      font-size: 1.05rem;
-    }
-
     @keyframes pulse {
       0%, 100% {
         transform: scale(0.86);
@@ -614,51 +494,6 @@
       }
     }
 
-    @keyframes celebrationPop {
-      from {
-        opacity: 0;
-        transform: translateY(-8px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes badgePop {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -16px) scale(0.92);
-      }
-
-      16%, 76% {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(1);
-      }
-
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -12px) scale(0.96);
-      }
-    }
-
-    @keyframes particleBurst {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.45);
-      }
-
-      16% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.1) rotate(var(--r));
-      }
-    }
-
     @media (max-width: 900px) {
       .page-shell {
         grid-template-columns: 1fr;
@@ -688,20 +523,14 @@
 
       .card-header,
       .audio-controls,
-      .controls,
-      .reaction-guide-header {
+      .controls {
         flex-direction: column;
       }
 
       .icon-button,
       .primary-button,
-      .secondary-button,
-      #current-category {
+      .secondary-button {
         width: 100%;
-      }
-
-      #current-category {
-        text-align: center;
       }
 
       .game-area {
@@ -717,7 +546,6 @@
 </head>
 <body>
   <canvas id="three-canvas" aria-hidden="true"></canvas>
-  <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
 
   <main class="page-shell">
     <section class="hero">
@@ -737,29 +565,14 @@
 
         <div class="audio-controls" aria-label="Audio controls">
           <button id="music-toggle" class="icon-button" type="button" aria-pressed="false">Music Off</button>
-          <button id="sound-toggle" class="icon-button" type="button" aria-pressed="false">SFX Off</button>
+          <button id="sound-toggle" class="icon-button" type="button" aria-pressed="false">Sound Off</button>
         </div>
-      </div>
-
-      <button id="show-instructions-button" class="text-button" type="button">Show Instructions</button>
-
-      <div id="instructions-panel" class="instructions-panel">
-        <div class="instructions-header">
-          <strong>How to play</strong>
-          <button id="hide-instructions-button" class="icon-button" type="button">Hide</button>
-        </div>
-        <p>Press Start Game, wait for the green signal, then click, tap, or press Space as fast as possible. You can react by clicking the game box, pressing Space, or pressing the main button when it says Click Now.</p>
       </div>
 
       <div id="game-area" class="game-area idle" role="button" tabindex="0" aria-label="Reaction game area. Start the game, then wait for green before clicking.">
         <div class="pulse-ring"></div>
-        <p id="game-status" class="game-status" aria-live="polite">Ready?</p>
+        <p id="game-status" class="game-status">Ready?</p>
         <p id="game-message" class="game-message">Press Start Game when you are ready.</p>
-      </div>
-
-      <div id="result-celebration" class="result-celebration" aria-live="polite">
-        <strong id="celebration-title">Nice reaction</strong>
-        <span id="celebration-message">Your celebration will appear here.</span>
       </div>
 
       <div class="controls">
@@ -789,11 +602,6 @@
       <div class="rating-panel">
         <span>Performance Rating</span>
         <strong id="rating">No attempts yet</strong>
-      </div>
-
-      <div class="score-explanation">
-        <strong>What your time means</strong>
-        <p>Your score is measured in milliseconds. It counts the time between the green signal appearing and your reaction. Lower is better.</p>
       </div>
 
       <section class="reaction-guide" aria-labelledby="reaction-guide-title">
@@ -839,13 +647,6 @@
     const resetButton = document.querySelector("#reset-button");
     const soundToggle = document.querySelector("#sound-toggle");
     const musicToggle = document.querySelector("#music-toggle");
-    const instructionsPanel = document.querySelector("#instructions-panel");
-    const showInstructionsButton = document.querySelector("#show-instructions-button");
-    const hideInstructionsButton = document.querySelector("#hide-instructions-button");
-    const celebrationLayer = document.querySelector("#celebration-layer");
-    const resultCelebration = document.querySelector("#result-celebration");
-    const celebrationTitle = document.querySelector("#celebration-title");
-    const celebrationMessage = document.querySelector("#celebration-message");
 
     const bestTimeElement = document.querySelector("#best-time");
     const averageTimeElement = document.querySelector("#average-time");
@@ -876,7 +677,6 @@
     let musicIntervalId = null;
     let musicStep = 0;
     let threeSceneReady = false;
-    let celebrationTimeoutId = null;
     let stats = loadStats();
 
     function loadStats() {
@@ -896,16 +696,10 @@
     }
 
     function saveStats() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
-      } catch {
-        console.warn("Stats could not be saved in this browser.");
-      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
     }
 
     function resetStats() {
-      clearPendingRound();
-
       stats = {
         bestTime: null,
         totalTime: 0,
@@ -914,7 +708,6 @@
       };
 
       saveStats();
-      hideCelebration();
       updateStatsUI();
       setGameState(gameStates.IDLE);
     }
@@ -928,13 +721,12 @@
     function startRound() {
       clearPendingRound();
       targetShownAt = 0;
-      hideCelebration();
       setGameState(gameStates.WAITING);
 
       waitTimeoutId = window.setTimeout(() => {
         targetShownAt = performance.now();
         setGameState(gameStates.ACTIVE);
-        playTone(680, 0.06, "triangle", 0.1, null, "sfx");
+        playTone(680, 0.06);
       }, getRandomDelay());
     }
 
@@ -943,16 +735,6 @@
         clearTimeout(waitTimeoutId);
         waitTimeoutId = null;
       }
-    }
-
-    function handleStartButtonAction() {
-      if (currentState === gameStates.WAITING || currentState === gameStates.ACTIVE) {
-        handlePlayerAction();
-        return;
-      }
-
-      startRound();
-      prepareAudioContext();
     }
 
     function handlePlayerAction() {
@@ -970,16 +752,13 @@
       clearPendingRound();
       targetShownAt = 0;
       setGameState(gameStates.TOO_SOON);
-      playTone(180, 0.12, "sawtooth", 0.1, null, "sfx");
+      playTone(180, 0.12);
     }
 
     function recordReactionTime() {
-      if (!targetShownAt) return;
-
       const clickedAt = performance.now();
       const reactionTime = Math.round(clickedAt - targetShownAt);
 
-      targetShownAt = 0;
       stats.latestTime = reactionTime;
       stats.validAttempts += 1;
       stats.totalTime += reactionTime;
@@ -991,8 +770,7 @@
       saveStats();
       updateStatsUI();
       setGameState(gameStates.RESULT, reactionTime);
-      triggerCelebration(reactionTime);
-      playReactionSound(reactionTime);
+      playTone(420, 0.08);
     }
 
     function setGameState(nextState, reactionTime = null) {
@@ -1004,27 +782,32 @@
         [gameStates.IDLE]: {
           status: "Ready?",
           message: "Press Start Game when you are ready.",
-          buttonText: "Start Game"
+          buttonText: "Start Game",
+          buttonDisabled: false
         },
         [gameStates.WAITING]: {
           status: "Wait...",
           message: "Wait for green. Do not click yet.",
-          buttonText: "Too Soon?"
+          buttonText: "Waiting...",
+          buttonDisabled: true
         },
         [gameStates.ACTIVE]: {
           status: "Click now!",
-          message: "Click the game box, press Space, or press this button now.",
-          buttonText: "Click Now!"
+          message: "Click, tap, or press Space immediately.",
+          buttonText: "React!",
+          buttonDisabled: true
         },
         [gameStates.RESULT]: {
           status: `${reactionTime}ms`,
           message: getResultMessage(reactionTime),
-          buttonText: "Play Again"
+          buttonText: "Play Again",
+          buttonDisabled: false
         },
         [gameStates.TOO_SOON]: {
           status: "Too soon!",
           message: "You clicked before the signal. Wait for green next time.",
-          buttonText: "Try Again"
+          buttonText: "Try Again",
+          buttonDisabled: false
         }
       };
 
@@ -1032,86 +815,53 @@
       gameStatus.textContent = content.status;
       gameMessage.textContent = content.message;
       startButton.textContent = content.buttonText;
+      startButton.disabled = content.buttonDisabled;
+    }
+
+    function getResultMessage(time) {
+      if (time <= 180) return "Lightning fast. Elite reaction speed.";
+      if (time <= 250) return "Sharp reaction. Very strong result.";
+      if (time <= 350) return "Solid reaction. Keep pushing for faster timing.";
+      return "Good attempt. Stay relaxed and focused.";
     }
 
     function getRatingData(time) {
       if (time === null || time === undefined) {
         return {
           label: "No attempts yet",
-          title: "Ready when you are",
-          message: "Start a round and test your focus.",
-          color: "#22c55e",
-          burst: 0,
-          icons: ["✦"]
+          color: "#22c55e"
         };
       }
 
       if (time <= 180) {
         return {
           label: "Lightning Fast",
-          title: "Lightning Fast!",
-          message: "Elite reaction speed. That was seriously quick.",
-          color: "#22c55e",
-          burst: 30,
-          icons: ["⚡", "✦", "★"]
+          color: "#22c55e"
         };
       }
 
       if (time <= 250) {
         return {
           label: "Sharp",
-          title: "Sharp Reaction!",
-          message: "Very strong result. You reacted with control and speed.",
-          color: "#38bdf8",
-          burst: 22,
-          icons: ["✦", "★", "◆"]
+          color: "#38bdf8"
         };
       }
 
       if (time <= 350) {
         return {
           label: "Average",
-          title: "Solid Hit!",
-          message: "Good reaction. Keep pushing for cleaner timing.",
-          color: "#f59e0b",
-          burst: 14,
-          icons: ["◆", "✦"]
+          color: "#f59e0b"
         };
       }
 
       return {
         label: "Needs Focus",
-        title: "Stay Locked In!",
-        message: "Good attempt. Relax, reset, and try to react on green.",
-        color: "#ef4444",
-        burst: 8,
-        icons: ["✦"]
+        color: "#ef4444"
       };
     }
 
-    function getResultMessage(time) {
-      return getRatingData(time).message;
-    }
-
-    function formatTime(time) {
-      return time === null ? "--" : `${time}ms`;
-    }
-
-    function getAverageTime() {
-      if (stats.validAttempts === 0) return null;
-      return Math.round(stats.totalTime / stats.validAttempts);
-    }
-
-    function updateStatsUI() {
-      bestTimeElement.textContent = formatTime(stats.bestTime);
-      averageTimeElement.textContent = formatTime(getAverageTime());
-      attemptCountElement.textContent = stats.validAttempts;
-      latestTimeElement.textContent = formatTime(stats.latestTime);
-
-      const ratingData = getRatingData(stats.latestTime);
-      ratingElement.textContent = ratingData.label;
-      ratingElement.style.color = ratingData.color;
-      updateReactionGuide(stats.latestTime);
+    function getPerformanceRating() {
+      return getRatingData(stats.latestTime).label;
     }
 
     function updateReactionGuide(time) {
@@ -1140,14 +890,35 @@
       currentCategory.style.background = `${ratingData.color}14`;
     }
 
+    function formatTime(time) {
+      return time === null ? "--" : `${time}ms`;
+    }
+
+    function getAverageTime() {
+      if (stats.validAttempts === 0) return null;
+      return Math.round(stats.totalTime / stats.validAttempts);
+    }
+
+    function updateStatsUI() {
+      bestTimeElement.textContent = formatTime(stats.bestTime);
+      averageTimeElement.textContent = formatTime(getAverageTime());
+      attemptCountElement.textContent = stats.validAttempts;
+      latestTimeElement.textContent = formatTime(stats.latestTime);
+
+      const ratingData = getRatingData(stats.latestTime);
+      ratingElement.textContent = ratingData.label;
+      ratingElement.style.color = ratingData.color;
+      updateReactionGuide(stats.latestTime);
+    }
+
     function toggleSound() {
       soundEnabled = !soundEnabled;
       soundToggle.setAttribute("aria-pressed", String(soundEnabled));
-      soundToggle.textContent = soundEnabled ? "SFX On" : "SFX Off";
+      soundToggle.textContent = soundEnabled ? "Sound On" : "Sound Off";
 
       if (soundEnabled) {
         prepareAudioContext();
-        playTone(520, 0.06, "triangle", 0.1, null, "sfx");
+        playTone(520, 0.06);
       }
     }
 
@@ -1158,36 +929,14 @@
 
       if (musicEnabled) {
         prepareAudioContext();
-        startBackgroundMusic();
+
+        if (audioContext && audioContext.state === "suspended") {
+          audioContext.resume().then(startBackgroundMusic);
+        } else {
+          startBackgroundMusic();
+        }
       } else {
         stopBackgroundMusic();
-      }
-    }
-
-    function prepareAudioContext() {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-
-      if (!AudioContextClass) {
-        console.warn("Web Audio is not supported in this browser.");
-        return;
-      }
-
-      try {
-        if (!audioContext) {
-          audioContext = new AudioContextClass();
-        }
-
-        if (audioContext.state === "suspended") {
-          audioContext.resume();
-        }
-
-        if (!musicMasterGain) {
-          musicMasterGain = audioContext.createGain();
-          musicMasterGain.gain.value = 0.34;
-          musicMasterGain.connect(audioContext.destination);
-        }
-      } catch (error) {
-        console.warn("Audio could not start, but the game can still run.", error);
       }
     }
 
@@ -1195,7 +944,7 @@
       if (!musicEnabled || !audioContext || musicIntervalId) return;
 
       musicStep = 0;
-      musicIntervalId = window.setInterval(playMusicStep, 280);
+      musicIntervalId = window.setInterval(playMusicStep, 260);
       playMusicStep();
     }
 
@@ -1214,13 +963,33 @@
       const step = musicStep % melody.length;
       const isAccentStep = step === 0 || step === 4;
 
-      playTone(melody[step], 0.22, "triangle", isAccentStep ? 0.09 : 0.065, musicMasterGain, "music");
+      playTone(melody[step], 0.24, "triangle", isAccentStep ? 0.14 : 0.1, musicMasterGain, "music");
 
       if (isAccentStep) {
-        playTone(bass[step], 0.46, "sine", 0.07, musicMasterGain, "music");
+        playTone(bass[step], 0.5, "sine", 0.11, musicMasterGain, "music");
       }
 
       musicStep += 1;
+    }
+
+    function prepareAudioContext() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContextClass) return;
+
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
+      }
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      if (!musicMasterGain) {
+        musicMasterGain = audioContext.createGain();
+        musicMasterGain.gain.value = 0.36;
+        musicMasterGain.connect(audioContext.destination);
+      }
     }
 
     function playTone(frequency, duration, type = "sine", volume = 0.08, destination = null, category = "sfx") {
@@ -1246,114 +1015,21 @@
       oscillator.stop(startTime + duration + 0.03);
     }
 
-    function playReactionSound(time) {
-      if (!soundEnabled || !audioContext) return;
+    startButton.addEventListener("click", () => {
+      prepareAudioContext();
+      startRound();
+    });
 
-      const ratingData = getRatingData(time);
-      const chords = {
-        "Lightning Fast": [523.25, 659.25, 783.99],
-        Sharp: [440, 554.37, 659.25],
-        Average: [329.63, 392, 493.88],
-        "Needs Focus": [220, 261.63]
-      };
-
-      const chord = chords[ratingData.label] || chords.Average;
-      chord.forEach((note, index) => {
-        window.setTimeout(() => playTone(note, 0.16, "triangle", 0.095, null, "sfx"), index * 70);
-      });
-    }
-
-    function hideCelebration() {
-      resultCelebration.classList.remove("show");
-      celebrationLayer.innerHTML = "";
-
-      if (celebrationTimeoutId) {
-        clearTimeout(celebrationTimeoutId);
-        celebrationTimeoutId = null;
-      }
-    }
-
-    function triggerCelebration(time) {
-      const ratingData = getRatingData(time);
-
-      hideCelebration();
-      resultCelebration.style.borderColor = `${ratingData.color}66`;
-      resultCelebration.style.background = `${ratingData.color}14`;
-      celebrationTitle.style.color = ratingData.color;
-      celebrationTitle.textContent = ratingData.title;
-      celebrationMessage.textContent = ratingData.message;
-      void resultCelebration.offsetWidth;
-      resultCelebration.classList.add("show");
-
-      const badge = document.createElement("div");
-      badge.className = "celebration-badge";
-      badge.style.borderColor = `${ratingData.color}66`;
-      badge.innerHTML = `<strong style="color: ${ratingData.color}">${ratingData.title}</strong><span>${ratingData.message}</span>`;
-      celebrationLayer.appendChild(badge);
-
-      for (let index = 0; index < ratingData.burst; index += 1) {
-        const particle = document.createElement("span");
-        const useIcon = index % 4 === 0;
-        particle.className = useIcon ? "celebration-particle star" : "celebration-particle";
-
-        if (useIcon) {
-          particle.textContent = ratingData.icons[index % ratingData.icons.length];
-          particle.style.color = ratingData.color;
-        } else {
-          particle.style.background = ratingData.color;
-        }
-
-        const angle = (Math.PI * 2 * index) / Math.max(ratingData.burst, 1);
-        const distance = 90 + Math.random() * 170;
-        particle.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
-        particle.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
-        particle.style.setProperty("--r", `${Math.random() * 420 - 210}deg`);
-        particle.style.animationDelay = `${Math.random() * 90}ms`;
-        celebrationLayer.appendChild(particle);
-      }
-
-      celebrationTimeoutId = window.setTimeout(() => {
-        celebrationLayer.innerHTML = "";
-        celebrationTimeoutId = null;
-      }, 1800);
-    }
-
-    function showInstructions() {
-      instructionsPanel.classList.remove("hidden");
-      showInstructionsButton.classList.remove("visible");
-    }
-
-    function hideInstructions() {
-      instructionsPanel.classList.add("hidden");
-      showInstructionsButton.classList.add("visible");
-    }
-
-    startButton.addEventListener("click", handleStartButtonAction);
     resetButton.addEventListener("click", resetStats);
     soundToggle.addEventListener("click", toggleSound);
     musicToggle.addEventListener("click", toggleMusic);
     gameArea.addEventListener("click", handlePlayerAction);
-    showInstructionsButton.addEventListener("click", showInstructions);
-    hideInstructionsButton.addEventListener("click", hideInstructions);
 
     window.addEventListener("keydown", (event) => {
       const validKeys = [" ", "Enter"];
-      const interactiveElements = ["BUTTON", "A", "INPUT", "TEXTAREA", "SELECT"];
-
       if (!validKeys.includes(event.key) || event.repeat) return;
-
-      if (interactiveElements.includes(document.activeElement.tagName)) {
-        return;
-      }
-
       event.preventDefault();
-
-      if (currentState === gameStates.IDLE || currentState === gameStates.RESULT || currentState === gameStates.TOO_SOON) {
-        startRound();
-        prepareAudioContext();
-      } else {
-        handlePlayerAction();
-      }
+      handlePlayerAction();
     });
 
     updateStatsUI();
@@ -1437,4 +1113,105 @@
     };
 
     let activeVisualPreset = visualPresets[gameStates.IDLE];
-    let shakeUnt
+    let shakeUntil = 0;
+
+    function createFloatingShapes() {
+      const shapes = [];
+      const geometries = [
+        new THREE.BoxGeometry(0.38, 0.38, 0.38),
+        new THREE.OctahedronGeometry(0.34),
+        new THREE.TorusGeometry(0.26, 0.08, 10, 24),
+        new THREE.IcosahedronGeometry(0.32)
+      ];
+
+      for (let index = 0; index < 26; index += 1) {
+        const material = new THREE.MeshStandardMaterial({
+          color: index % 2 === 0 ? 0x334155 : 0x1f2937,
+          emissive: 0x020617,
+          metalness: 0.35,
+          roughness: 0.45,
+          wireframe: true
+        });
+
+        const mesh = new THREE.Mesh(geometries[index % geometries.length], material);
+
+        mesh.position.set(
+          THREE.MathUtils.randFloatSpread(11),
+          THREE.MathUtils.randFloatSpread(7),
+          THREE.MathUtils.randFloat(-4, 2)
+        );
+
+        mesh.rotation.set(
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI
+        );
+
+        mesh.userData = {
+          rotationSpeed: THREE.MathUtils.randFloat(0.002, 0.008),
+          floatSpeed: THREE.MathUtils.randFloat(0.001, 0.004),
+          startY: mesh.position.y,
+          phase: Math.random() * Math.PI * 2
+        };
+
+        shapes.push(mesh);
+      }
+
+      return shapes;
+    }
+
+    function updateThreeVisualState(state) {
+      if (!threeSceneReady) return;
+
+      activeVisualPreset = visualPresets[state];
+      centralShape.material.color.setHex(activeVisualPreset.color);
+      centralShape.material.emissive.setHex(activeVisualPreset.emissive);
+      pointLight.color.setHex(activeVisualPreset.light);
+
+      if (state === gameStates.TOO_SOON) {
+        shakeUntil = performance.now() + 450;
+      }
+    }
+
+    function animateThreeScene() {
+      requestAnimationFrame(animateThreeScene);
+
+      const now = performance.now();
+      const elapsed = now * 0.001;
+
+      centralShape.rotation.x += activeVisualPreset.speed * 0.7;
+      centralShape.rotation.y += activeVisualPreset.speed;
+
+      const pulseScale = activeVisualPreset.scale + Math.sin(elapsed * 3.2) * (currentState === gameStates.ACTIVE ? 0.055 : 0.025);
+      centralShape.scale.setScalar(pulseScale);
+
+      if (now < shakeUntil) {
+        visualGroup.position.x = Math.sin(now * 0.09) * 0.08;
+      } else {
+        visualGroup.position.x = 0;
+      }
+
+      floatingShapes.forEach((shape) => {
+        shape.rotation.x += shape.userData.rotationSpeed;
+        shape.rotation.y += shape.userData.rotationSpeed * 0.75;
+        shape.position.y = shape.userData.startY + Math.sin(elapsed + shape.userData.phase) * shape.userData.floatSpeed * 90;
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    function resizeThreeScene() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    }
+
+    threeSceneReady = true;
+    updateThreeVisualState(currentState);
+
+    window.addEventListener("resize", resizeThreeScene);
+    animateThreeScene();
+  </script>
+</body>
+</html>

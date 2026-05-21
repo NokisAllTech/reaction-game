@@ -66,23 +66,25 @@
     .page-shell {
       position: relative;
       z-index: 1;
-      width: min(1120px, calc(100% - 32px));
+      width: min(860px, calc(100% - 32px));
       min-height: 100vh;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      align-items: center;
-      gap: 48px;
-      padding: 64px 0;
+      grid-template-columns: 1fr;
+      align-content: center;
+      gap: 24px;
+      padding: 42px 0;
     }
 
     .hero {
-      max-width: 520px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .eyebrow {
       width: fit-content;
-      margin-bottom: 18px;
+      margin: 0 auto 14px;
       padding: 8px 14px;
       border: 1px solid rgba(34, 197, 94, 0.35);
       border-radius: 999px;
@@ -95,21 +97,24 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.08em;
-      margin-bottom: 24px;
+      font-size: clamp(2.15rem, 5vw, 3.65rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
     }
 
     .hero-text {
-      max-width: 42rem;
+      max-width: 620px;
+      margin: 0 auto;
       color: var(--muted-text);
-      font-size: clamp(1rem, 2vw, 1.18rem);
-      line-height: 1.75;
+      font-size: clamp(0.95rem, 1.7vw, 1.05rem);
+      line-height: 1.65;
     }
 
     .game-card {
       width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
       border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: var(--radius-xl);
       background:
@@ -117,15 +122,15 @@
         rgba(17, 24, 39, 0.9);
       box-shadow: var(--shadow);
       backdrop-filter: blur(22px);
-      padding: clamp(20px, 4vw, 32px);
+      padding: clamp(18px, 3vw, 28px);
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       gap: 20px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .card-header h2 {
@@ -145,9 +150,73 @@
       flex: 0 0 auto;
     }
 
+    .text-button {
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 0;
+      color: var(--muted-text);
+      background: transparent;
+      border: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .text-button.visible {
+      display: inline-flex;
+    }
+
+    .instructions-panel {
+      margin-bottom: 18px;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(31, 41, 55, 0.52);
+    }
+
+    .instructions-panel.hidden {
+      display: none;
+    }
+
+    .instructions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .instructions-header strong {
+      display: block;
+      font-size: 0.96rem;
+      letter-spacing: -0.02em;
+    }
+
+    .instructions-panel p {
+      color: var(--muted-text);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .icon-button,
     .primary-button,
-    .secondary-button {
+    .secondary-button,
+    .text-button {
       border: 0;
       border-radius: 999px;
       cursor: pointer;
@@ -177,13 +246,14 @@
 
     .icon-button:hover,
     .primary-button:hover,
-    .secondary-button:hover {
+    .secondary-button:hover,
+    .text-button:hover {
       transform: translateY(-2px);
     }
 
     .game-area {
       position: relative;
-      min-height: 260px;
+      min-height: 230px;
       display: grid;
       place-items: center;
       text-align: center;
@@ -298,7 +368,7 @@
     .controls {
       display: flex;
       gap: 14px;
-      margin: 24px 0;
+      margin: 20px 0;
     }
 
     .primary-button,
@@ -362,7 +432,7 @@
 
     .rating-panel {
       margin-top: 12px;
-      padding: 18px;
+      padding: 16px;
     }
 
     .rating-panel strong {
@@ -373,7 +443,7 @@
 
     .reaction-guide {
       margin-top: 12px;
-      padding: 18px;
+      padding: 16px;
       border: 1px solid rgba(148, 163, 184, 0.16);
       border-radius: var(--radius-md);
       background: rgba(31, 41, 55, 0.52);
@@ -450,6 +520,26 @@
       box-shadow: 0 0 24px rgba(34, 197, 94, 0.16);
     }
 
+    .footer-credit {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted-text);
+      text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @keyframes pulse {
       0%, 100% {
         transform: scale(0.86);
@@ -496,19 +586,13 @@
 
     @media (max-width: 900px) {
       .page-shell {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 40px 0;
+        width: min(820px, calc(100% - 28px));
+        gap: 24px;
+        padding: 34px 0;
       }
 
       .hero {
-        max-width: 720px;
-        text-align: center;
-        margin: 0 auto;
-      }
-
-      .eyebrow {
-        margin-inline: auto;
+        max-width: 680px;
       }
     }
 
@@ -523,7 +607,8 @@
 
       .card-header,
       .audio-controls,
-      .controls {
+      .controls,
+      .instructions-header {
         flex-direction: column;
       }
 
@@ -569,10 +654,21 @@
         </div>
       </div>
 
+      <button id="show-instructions-button" class="text-button" type="button">Show Instructions</button>
+
+      <div id="instructions-panel" class="instructions-panel">
+        <div class="instructions-header">
+          <strong>How to play</strong>
+          <button id="hide-instructions-button" class="icon-button" type="button">Hide</button>
+        </div>
+        <p>Press Start Game, wait until the box turns green, then click the game box or press Space as fast as possible. Clicking before the green signal counts as too soon.</p>
+      </div>
+
       <div id="game-area" class="game-area idle" role="button" tabindex="0" aria-label="Reaction game area. Start the game, then wait for green before clicking.">
         <div class="pulse-ring"></div>
         <p id="game-status" class="game-status">Ready?</p>
         <p id="game-message" class="game-message">Press Start Game when you are ready.</p>
+        <p id="live-status" class="sr-only" aria-live="polite" aria-atomic="true">Ready to start.</p>
       </div>
 
       <div class="controls">
@@ -633,6 +729,10 @@
         </div>
       </section>
     </section>
+
+    <footer class="footer-credit">
+      Built with HTML, CSS, JavaScript, the Web Audio API, and Three.js.
+    </footer>
   </main>
 
   <script type="module">
@@ -647,6 +747,10 @@
     const resetButton = document.querySelector("#reset-button");
     const soundToggle = document.querySelector("#sound-toggle");
     const musicToggle = document.querySelector("#music-toggle");
+    const instructionsPanel = document.querySelector("#instructions-panel");
+    const showInstructionsButton = document.querySelector("#show-instructions-button");
+    const hideInstructionsButton = document.querySelector("#hide-instructions-button");
+    const liveStatus = document.querySelector("#live-status");
 
     const bestTimeElement = document.querySelector("#best-time");
     const averageTimeElement = document.querySelector("#average-time");
@@ -678,6 +782,7 @@
     let musicStep = 0;
     let threeSceneReady = false;
     let stats = loadStats();
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function loadStats() {
       const fallbackStats = {
@@ -814,6 +919,7 @@
       const content = stateContent[nextState];
       gameStatus.textContent = content.status;
       gameMessage.textContent = content.message;
+      liveStatus.textContent = `${content.status}. ${content.message}`;
       startButton.textContent = content.buttonText;
       startButton.disabled = content.buttonDisabled;
     }
@@ -1015,6 +1121,16 @@
       oscillator.stop(startTime + duration + 0.03);
     }
 
+    function showInstructions() {
+      instructionsPanel.classList.remove("hidden");
+      showInstructionsButton.classList.remove("visible");
+    }
+
+    function hideInstructions() {
+      instructionsPanel.classList.add("hidden");
+      showInstructionsButton.classList.add("visible");
+    }
+
     startButton.addEventListener("click", () => {
       prepareAudioContext();
       startRound();
@@ -1024,12 +1140,27 @@
     soundToggle.addEventListener("click", toggleSound);
     musicToggle.addEventListener("click", toggleMusic);
     gameArea.addEventListener("click", handlePlayerAction);
+    showInstructionsButton.addEventListener("click", showInstructions);
+    hideInstructionsButton.addEventListener("click", hideInstructions);
 
     window.addEventListener("keydown", (event) => {
       const validKeys = [" ", "Enter"];
+      const interactiveElements = ["BUTTON", "A", "INPUT", "TEXTAREA", "SELECT"];
+
       if (!validKeys.includes(event.key) || event.repeat) return;
+
+      if (interactiveElements.includes(document.activeElement.tagName)) {
+        return;
+      }
+
       event.preventDefault();
-      handlePlayerAction();
+
+      if (currentState === gameStates.IDLE || currentState === gameStates.RESULT || currentState === gameStates.TOO_SOON) {
+        prepareAudioContext();
+        startRound();
+      } else {
+        handlePlayerAction();
+      }
     });
 
     updateStatsUI();
@@ -1179,10 +1310,13 @@
       const now = performance.now();
       const elapsed = now * 0.001;
 
-      centralShape.rotation.x += activeVisualPreset.speed * 0.7;
-      centralShape.rotation.y += activeVisualPreset.speed;
+      if (!prefersReducedMotion) {
+        centralShape.rotation.x += activeVisualPreset.speed * 0.7;
+        centralShape.rotation.y += activeVisualPreset.speed;
+      }
 
-      const pulseScale = activeVisualPreset.scale + Math.sin(elapsed * 3.2) * (currentState === gameStates.ACTIVE ? 0.055 : 0.025);
+      const pulseAmount = prefersReducedMotion ? 0 : (currentState === gameStates.ACTIVE ? 0.055 : 0.025);
+      const pulseScale = activeVisualPreset.scale + Math.sin(elapsed * 3.2) * pulseAmount;
       centralShape.scale.setScalar(pulseScale);
 
       if (now < shakeUntil) {
@@ -1192,9 +1326,11 @@
       }
 
       floatingShapes.forEach((shape) => {
-        shape.rotation.x += shape.userData.rotationSpeed;
-        shape.rotation.y += shape.userData.rotationSpeed * 0.75;
-        shape.position.y = shape.userData.startY + Math.sin(elapsed + shape.userData.phase) * shape.userData.floatSpeed * 90;
+        if (!prefersReducedMotion) {
+          shape.rotation.x += shape.userData.rotationSpeed;
+          shape.rotation.y += shape.userData.rotationSpeed * 0.75;
+          shape.position.y = shape.userData.startY + Math.sin(elapsed + shape.userData.phase) * shape.userData.floatSpeed * 90;
+        }
       });
 
       renderer.render(scene, camera);
